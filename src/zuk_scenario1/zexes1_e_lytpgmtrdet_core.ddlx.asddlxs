@@ -1,0 +1,78 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Customer Category Details',
+                typeNamePlural: 'Customer Category Details',
+                title: { type: #STANDARD, label: 'Customer Category Details', value: 'LoyaltyPgmMembershipID' } },
+  presentationVariant: [{ sortOrder: [{ by: 'LoyaltyPgmMembershipID', direction:  #ASC }] }] }
+annotate entity ZEXES1_C_LYTPGMTRDET with
+{
+  @UI.facet: [
+        {
+           id: 'CategoryDetails',
+           purpose: #STANDARD,
+           label: 'Customer Category Details',
+           type: #FIELDGROUP_REFERENCE
+        }]
+
+  @UI.hidden: true
+  LoyaltyPgmMembershipID;
+
+  @UI: {
+          identification   : [ { position: 10, label: 'Tier Country/Region'  } ],
+          lineItem         : [ { qualifier: 'LITierDetails', position: 10, label: 'Tier Country/Region' } ],
+          fieldGroup       : [ { position: 10, label: 'Tier Country/Region' }]
+        }
+  @Consumption.valueHelpDefinition: [{ entity: {  name: 'I_CountryVH', element: 'Country'}, label: 'Country' }]
+  TierCountry;
+
+  @UI: {
+          identification   : [ { position: 20, label: 'Category ID'  } ],
+          lineItem         : [ { qualifier: 'LITierDetails', position: 20, label: 'Category ID' } ],
+          fieldGroup       : [ { position: 20, label: 'Category ID' }]
+        }
+  @Consumption.valueHelpDefinition: [{ entity: {  name: 'ZEXES1_LYLPTS_C_TIER_HDR_VH', element: 'LoyaltyTierID'}, label: 'Category ID' }]
+  LoyaltyPgmTierID;
+
+  @UI: {
+          identification   : [ { position: 30, label: 'Valid From'  } ],
+          lineItem         : [ { qualifier: 'LITierDetails', position: 30, label: 'Category Valid From'  } ],
+          fieldGroup       : [ { position: 30, label: 'Valid From' }]
+       }
+  @EndUserText.label: 'Category Valid From'
+  LoyaltyPgmTierValidFrom;
+
+  @UI.hidden: true
+  LoyaltyPgmTierStatus;
+
+  @UI: {
+          identification   : [ { position: 40, label: 'Status'  } ],
+          lineItem         : [ { qualifier: 'LITierDetails', position: 40, label: 'Category Status'  } ],
+          fieldGroup       : [ { position: 40, label: 'Status' }]
+       }
+  @EndUserText.label: 'Category Status'
+  @Consumption.valueHelpDefinition: [{
+        entity: { name: 'zexes1_LYLPTS_TIERSTA_DOM_VAL', element: 'Text' },
+       label: 'Tier Status'
+                                   }]
+  LoyaltyPgmTierStatusText;
+
+  @UI.hidden: true
+  LoyaltyBPPgmTierCreatBy;
+
+  @UI.hidden: true
+  LoyaltyBPPgmTierChngBy;
+  @UI.hidden: true
+  TierStatusText;
+
+  @UI: {
+       identification   : [ { position: 50, label: 'Tier Change Due By'  } ],
+       lineItem         : [ { qualifier: 'LITierDetails', position: 50, label: 'Tier Change Due By'  } ],
+       fieldGroup       : [ { position: 50, label: 'Tier Change Due By' }]
+
+    }
+  TierWfApprovalDueBy;
+  @UI.hidden: true
+  loyaltytierdescription;
+
+
+}

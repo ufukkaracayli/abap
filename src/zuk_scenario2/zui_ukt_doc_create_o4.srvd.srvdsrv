@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Şunun için servis tanımı: ZC_UKT_DOC_CREATE'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_UKT_DOC_CREATE'
+  }
+}
+define service ZUI_UKT_DOC_CREATE_O4 provider contracts odata_v4_ui {
+  expose ZC_UKT_DOC_CREATE;
+}

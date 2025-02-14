@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZEXES1_LYLPTS_I_TIER_HDRs'
+define service ZUI_LOYALTYPOINTSMANAGE {
+  expose ZEXES1_LYLPTS_I_TIER_HDRS as loyaltyProgramTierH;
+  expose ZI_LOYALTYPOINTSMANAGE as LoyaltyPointsManage;
+}

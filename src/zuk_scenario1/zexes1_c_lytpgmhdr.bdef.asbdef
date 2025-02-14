@@ -1,0 +1,31 @@
+projection;
+strict ( 1 );
+use draft;
+define behavior for ZEXES1_C_LYTPGMHDR alias LoyaltyProgramHeader
+{
+  use create;
+  use update;
+  use delete;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+  use association _LoyaltyPgmTierDets { with draft; create; }
+  use association _LoyaltyPgmTransactions { with draft; create; }
+}
+
+define behavior for ZEXES1_C_LYTPGMTRDET alias LoyaltyPgmTierDets
+{
+  use update;
+  use delete;
+
+  use association _LoyaltyPgmMembershipHeader { with draft; }
+}
+define behavior for ZEXES1_C_LYTPGMTXNS alias LoyaltyProgramTransactions
+use etag
+{
+  use update;
+
+  use association _LoyaltyPgmMembershipHeader { with draft; }
+}

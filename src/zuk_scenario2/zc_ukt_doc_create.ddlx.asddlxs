@@ -1,0 +1,153 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'Id'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'Id'
+annotate view ZC_UKT_DOC_CREATE with
+{
+  @EndUserText.label: 'Id'
+  @UI.facet: [ {
+    label: 'Genel bilgiler', 
+    id: 'GeneralInfo', 
+    purpose: #STANDARD, 
+    position: 10 , 
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 10 , 
+    label: 'UUID'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    label: 'UUID'
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+  Id;
+  
+  @EndUserText.label: 'Username'
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  @UI.lineItem: [ {
+    position: 20 
+  } ]
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  Username;
+  
+  @EndUserText.label: 'Company'
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  @UI.lineItem: [ {
+    position: 30 
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  Company;
+  
+  @EndUserText.label: 'Role'
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  @UI.lineItem: [ {
+    position: 40 
+  } ]
+  @UI.selectionField: [ {
+    position: 40 
+  } ]
+  Role;
+  
+  @EndUserText.label: 'Docdate'
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  @UI.lineItem: [ {
+    position: 50 
+  } ]
+  @UI.selectionField: [ {
+    position: 50 
+  } ]
+  Docdate;
+  
+  @EndUserText.label: 'Invoiced'
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  @UI.lineItem: [ {
+    position: 60 
+  } ]
+  @UI.selectionField: [ {
+    position: 60 
+  } ]
+  Invoiced;
+  
+  @UI.identification: [ {
+    position: 70 , 
+    label: 'Created By'
+  } ]
+  @UI.lineItem: [ {
+    position: 70 , 
+    label: 'Created By'
+  } ]
+  @UI.selectionField: [ {
+    position: 70 
+  } ]
+  LocalCreatedBy;
+  
+  @UI.identification: [ {
+    position: 80 , 
+    label: 'Created On'
+  } ]
+  @UI.lineItem: [ {
+    position: 80 , 
+    label: 'Created On'
+  } ]
+  @UI.selectionField: [ {
+    position: 80 
+  } ]
+  LocalCreatedAt;
+  
+  @UI.identification: [ {
+    position: 90 , 
+    label: 'Changed By'
+  } ]
+  @UI.lineItem: [ {
+    position: 90 , 
+    label: 'Changed By'
+  } ]
+  @UI.selectionField: [ {
+    position: 90 
+  } ]
+  LocalLastChangedBy;
+  
+  @UI.identification: [ {
+    position: 100 , 
+    label: 'Changed On'
+  } ]
+  @UI.lineItem: [ {
+    position: 100 , 
+    label: 'Changed On'
+  } ]
+  @UI.selectionField: [ {
+    position: 100 
+  } ]
+  LocalLastChangedAt;
+  
+  @UI.identification: [ {
+    position: 110 , 
+    label: 'Changed On'
+  } ]
+  @UI.lineItem: [ {
+    position: 110 , 
+    label: 'Changed On'
+  } ]
+  @UI.selectionField: [ {
+    position: 110 
+  } ]
+  LastChangedAt;
+}

@@ -1,0 +1,60 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Customer Category Configuration Text',
+                typeNamePlural: 'Customer Category Configuration Texts',
+                title: { type: #STANDARD, label: 'Customer Category Configuration Text', value: 'LoyaltyTierDescriptionLanguage' } },
+  presentationVariant: [{ sortOrder: [{ by: 'LoyaltyTierDescriptionLanguage', direction:  #ASC }] }] }
+annotate entity zexes1_LYLPTS_C_TIER_TEXT with
+{
+  @UI.facet: [
+  {
+    id: 'CategoryPlan',
+    purpose: #STANDARD,
+    label: 'Category Plan',
+    type: #FIELDGROUP_REFERENCE,
+    targetQualifier: 'categoryPlanDescription'
+  }]
+
+  @UI.hidden: true
+  LoyaltyTierID;
+
+  @UI: {
+         identification   : [ { position: 10, label: 'Language'  } ],
+         lineItem         : [ { position: 10, label: 'Language' } ] ,
+         fieldGroup       : [{ position: 10, qualifier: 'categoryPlanDescription', label: 'Language'  }]
+        }
+  LoyaltyTierDescriptionLanguage;
+
+  @UI: {
+          identification   : [ { position: 20, label: 'Category Plan Name' } ],
+          lineItem         : [ { position: 20, label: 'Category Plan Name' } ],
+          fieldGroup       : [ { position: 20, qualifier: 'categoryPlanDescription', label: 'Name' }]
+       }
+  LoyaltyTierPlanName;
+
+  @UI: {
+         identification   : [ { position: 30, label: 'Category Plan Description'  }],
+         lineItem         : [ { position: 30, label: 'Category Plan Description' } ],
+         fieldGroup       : [ { position: 30, qualifier: 'categoryPlanDescription', label: 'Description' }]
+       }
+  LoyaltyTierDescription;
+
+  @UI.hidden: true
+  LoyaltyTierTxtCreatOn;
+
+  @UI.hidden: true
+  LoyaltyTierTxtCreatBy;
+
+  @UI.hidden: true
+  LoyaltyTierTxtChngOn;
+
+  @UI.hidden: true
+  LoyaltyTierTxtChngBy;
+
+  @UI.hidden: true
+  _TierConfiguration;
+
+  @UI.hidden: true
+  _LanguageText;
+
+}

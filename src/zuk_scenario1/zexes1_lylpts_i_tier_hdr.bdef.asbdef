@@ -1,0 +1,92 @@
+managed implementation in class zbp_exes1_lylpts_i_tier_hdr unique;
+with draft;
+define behavior for ZEXES1_LYLPTS_I_TIER_HDR alias TierConfigurationHeader
+persistent table zexes1_lyltier
+draft table zexes1_lyltier_d
+lock master total etag LoyaltyTierChngOn
+early numbering
+{
+
+  field ( readonly ) LoyaltyTierID;
+  mapping for zexes1_lyltier
+    {
+      LoyaltyTierID              = lyltierid;
+      LoyaltyTierCountry         = lyltiercnt;
+      LoyaltyTierDefaultCurrency = lyltierdefcur;
+      LoyaltyTierIsEnabled       = lyltierisenabled;
+      LoyaltyTierApprover        = lyltierapprover;
+      LoyaltyTierChangeDueDays   = lyltierduedays;
+      LoyaltyTierCreatOn         = lyltiercreaton;
+      LoyaltyTierCreatBy         = lyltiercreatby;
+      LoyaltyTierChngOn          = lyltierchngon;
+      LoyaltyTierChngBy          = lyltierchngby;
+    }
+  create;
+  update;
+  delete;
+  association _TierConfigurationText { create; with draft; }
+  association _TierConfigurationDetails { create; with draft; }
+}
+
+define behavior for ZEXES1_LYLPTS_I_TIER_DETAILS alias TierDetails
+persistent table zexes1_lyltrdt
+draft table zexes1_lyltrdt_d
+lock dependent by _TierConfiguration
+{
+
+  // Administrative fields: read only
+  field ( readonly ) LoyaltyTierDetailsChngOn, LoyaltyTierDetailsChngBy, LoyaltyTierDetailsCreatOn, LoyaltyTierDetailsCreatBy;
+
+  // Mandatory fields for tier configuration
+  field ( mandatory ) LoyaltyTierValidFrom, LoyaltyTierValidTo, LoyaltyTierTransactionCurrency;
+
+  // Fields that are mandatory for create but should be read-only afterwards
+  field ( readonly ) LoyaltyTierID;
+
+  mapping for zexes1_lyltrdt
+    {
+      LoyaltyTierID                  = lyltierid;
+      LoyaltyTierValidFrom           = lyltiervalfrom;
+      LoyaltyTierTransactionCurrency = lyltranscur;
+      LoyaltyTierValidTo             = lyltiervalto;
+      LoyaltyTierIsValid             = lyltierisvalid;
+      LoyaltyTierAccrualConvValue    = lylaccuconval;
+      LoyaltyTierRedemptionConvValue = lylrdmpconval;
+      LoyaltyTierDetailsCreatOn      = lyltrdtcreaton;
+      LoyaltyTierDetailsCreatBy      = lyltrdtcreatby;
+      LoyaltyTierDetailsChngOn       = lyltrdtchngon;
+      LoyaltyTierDetailsChngBy       = lyltrdtchngby;
+    }
+  update;
+  delete;
+
+  association _TierConfiguration { with draft; }
+}
+
+define behavior for ZEXES1_LYLPTS_I_TIER_TEXT alias TierConfigurationText
+persistent table zexes1_lyltiert
+draft table zexes1_lyltrt_d
+lock dependent by _TierConfiguration
+{
+
+  // Mandatory fields for translation of tier description
+  field ( readonly : update ) LoyaltyTierDescriptionLanguage;
+
+  // Fields that are mandatory for create but should be read-only afterwards
+  field ( readonly : update ) LoyaltyTierID;
+
+  mapping for zexes1_lyltiert
+    {
+      LoyaltyTierID                  = lyltierid;
+      LoyaltyTierDescriptionLanguage = lyltierdesclang;
+      LoyaltyTierPlanName            = lyltierplanname;
+      LoyaltyTierDescription         = lyltierdesc;
+      LoyaltyTierTxtCreatOn          = lyltiercreaton;
+      LoyaltyTierTxtCreatBy          = lyltiercreatby;
+      LoyaltyTierTxtChngOn           = lyltierchngon;
+      LoyaltyTierTxtChngBy           = lyltierchngby;
+    }
+  update;
+  delete;
+  association _TierConfiguration { with draft; }
+}

@@ -1,0 +1,72 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: {
+  headerInfo: { typeName: 'Customer Category Configuration Detail',
+                typeNamePlural: 'Customer Category Configuration Details',
+                title: { type: #STANDARD, label: 'Customer Category Configuration', value: 'LoyaltyTierID' } },
+  presentationVariant: [{ sortOrder: [{ by: 'LoyaltyTierID', direction:  #ASC }] }] }
+annotate entity zexes1_LYLPTS_C_TIER_DETAILS
+    with 
+{
+  @UI.facet: [
+   {
+     id: 'TierConfiguration',
+     purpose: #STANDARD,
+     label: 'Customer Category Configuration',
+     type: #FIELDGROUP_REFERENCE,
+     targetQualifier: 'categoryPlanDetails'
+   }]  
+   
+   @UI: {  identification   : [ { position: 10, label: 'ID' } ],
+           lineItem         : [ { position: 10, label: 'ID' } ],
+           fieldGroup       : [ { position: 10, label: 'ID', qualifier: 'categoryPlanDetails'  } ] } 
+   @Search.defaultSearchElement: true
+   LoyaltyTierID;
+   
+   @UI: {  identification   : [ { position: 20, label: 'Currency' } ],
+           lineItem         : [ { position: 20, label: 'Currency' } ],
+           fieldGroup       : [ { position: 20, label: 'Currency', qualifier: 'categoryPlanDetails'  } ] } 
+   @Consumption.valueHelpDefinition: [ { entity : { name    : 'I_Currency', 
+                                                    element : 'Currency' } } ]
+   @EndUserText.label: 'Currency'
+   LoyaltyTierTransactionCurrency;
+   
+   @UI: {  identification   : [ { position: 30, label: 'Validity Start Date' } ],
+           lineItem         : [ { position: 30, label: 'Validity Start Date' } ],
+           fieldGroup       : [ { position: 30, label: 'Validity Start Date', qualifier: 'categoryPlanDetails'  } ] }  
+   @EndUserText.label: 'Validity Start Date'
+   LoyaltyTierValidFrom;
+   
+   @UI: {  identification   : [ { position: 40, label: 'Validity End Date' } ],
+           lineItem         : [ { position: 40, label: 'Validity End Date' } ],
+           fieldGroup       : [ { position: 40, label: 'Validity End Date', qualifier: 'categoryPlanDetails'  } ] }  
+   LoyaltyTierValidTo;
+   
+   @UI: {  identification   : [ { position: 50, label: 'Valid' } ],
+           lineItem         : [ { position: 50, label: 'Valid' } ],
+           fieldGroup       : [ { position: 50, label: 'Valid', qualifier: 'categoryPlanDetails'  } ] }  
+   LoyaltyTierIsValid;
+   
+   @UI: {  identification   : [ { position: 60, label: 'Accrual Conversion Value' } ],
+           lineItem         : [ { position: 60, label: 'Accrual Conversion Value' } ],
+           fieldGroup       : [ { position: 60, label: 'Accrual Conversion Value', qualifier: 'categoryPlanDetails'  } ] }  
+   LoyaltyTierAccrualConvValue;
+   
+   @UI: {  identification   : [ { position: 70, label: 'Redemption Conversion Value' } ],
+           lineItem         : [ { position: 70, label: 'Redemption Conversion Value' } ],
+           fieldGroup       : [ { position: 70, label: 'Redemption Conversion Value', qualifier: 'categoryPlanDetails'  } ] }  
+   LoyaltyTierRedemptionConvValue;
+   
+   /* Admininstrative fields */
+   @UI.hidden: true
+   LoyaltyTierDetailsCreatOn;
+   
+   @UI.hidden: true
+   LoyaltyTierDetailsCreatBy;
+   
+   @UI.hidden: true
+   LoyaltyTierDetailsChngOn;
+   
+   @UI.hidden: true
+   LoyaltyTierDetailsChngBy;
+}

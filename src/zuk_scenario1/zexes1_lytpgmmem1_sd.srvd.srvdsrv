@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Def. for Loyalty Program UI'
+define service ZEXES1_LYTPGMMEM1_SD {
+  expose ZEXES1_C_LYTPGMHDR   as LoyaltyProgramHeader;
+  expose ZEXES1_C_LYTPGMTRDET as LoyaltyPgmTierDets;
+  expose ZEXES1_C_LYTPGMTXNS  as LoyaltyProgramTransactions;
+}

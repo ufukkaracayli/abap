@@ -1,0 +1,80 @@
+managed with additional save implementation in class ZBP_EXES1_LYLPTS_I_TIER_HDRS unique;
+strict;
+with draft;
+define behavior for ZEXES1_LYLPTS_I_TIER_HDRs alias loyaltyProgramTierH
+draft table ZEXES1_LYLT_D
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( features : instance )
+   TransportRequestID;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit with additional implementation;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _LoyaltyPointsManage { create ( features : instance ); with draft; }
+
+  side effects {
+    action SelectCustomizingTransptReq affects $self;
+  }
+  }
+
+define behavior for ZI_LoyaltyPointsManage alias LoyaltyPointsManage ##UNMAPPED_FIELD
+persistent table ZEXES1_LYLTIER
+draft table ZEXES1_LYLTIE_D
+lock dependent by _loyaltyProgramTierH
+authorization dependent by _loyaltyProgramTierH
+
+{
+  field ( mandatory : create )
+   Lyltierid;
+
+  field ( readonly )
+   SingletonID;
+
+  field ( readonly : update )
+   Lyltierid;
+
+  field ( notrigger )
+   SingletonID;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZEXES1_LYLTIER
+  {
+    Lyltierid = LYLTIERID;
+    Lyltiercnt = LYLTIERCNT;
+    Lyltierdefcur = LYLTIERDEFCUR;
+    Lyltierisenabled = LYLTIERISENABLED;
+    Lyltierapprover = LYLTIERAPPROVER;
+    Lyltierduedays = LYLTIERDUEDAYS;
+    Lyltiercreaton = LYLTIERCREATON;
+    Lyltiercreatby = LYLTIERCREATBY;
+    Lyltierchngon = LYLTIERCHNGON;
+    Lyltierchngby = LYLTIERCHNGBY;
+  }
+
+  association _loyaltyProgramTierH { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}

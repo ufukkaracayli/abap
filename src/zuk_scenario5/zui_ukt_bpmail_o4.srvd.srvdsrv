@@ -1,0 +1,13 @@
+@EndUserText: {
+  label: 'Şunun için servis tanımı: ZC_UKT_BPMAIL'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_UKT_BPMAIL'
+  }
+}
+@AbapCatalog.extensibility.extensible: true
+define service ZUI_UKT_BPMAIL_O4
+  provider contracts odata_v2_ui {
+  expose ZC_UKT_BPMAIL;
+}

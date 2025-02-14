@@ -1,0 +1,17 @@
+projection implementation in class ZBP_C_UKT_MAILCHANGE unique;
+strict ( 2 );
+use draft;
+define behavior for ZC_UKT_MAILCHANGE alias ZcUktMailchange
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+}

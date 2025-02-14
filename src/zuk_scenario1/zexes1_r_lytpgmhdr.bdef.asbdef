@@ -1,0 +1,109 @@
+managed implementation in class zbp_exes1_r_lytpgmhdr unique;
+strict ( 1 );
+with draft;
+define behavior for ZEXES1_R_LYTPGMHDR alias LoyaltyProgramHeader
+persistent table zexes1_lytpgmhdr
+draft table zexes1_pgmhdr_d
+lock master
+total etag LoyaltyPgmMembershipChngOn
+authorization master ( instance )
+early numbering
+etag master LoyaltyPgmMembershipChngOn
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) LoyaltyMembershipID;
+  field ( readonly : update ) BusinessPartnerID;
+  field ( readonly ) loyaltypgmPointsAvailable, BusinessPartnerName, loyaltypgmPointsRedeemed;
+  field ( mandatory : create ) BusinessPartnerID;
+  association _LoyaltyPgmTierDets { with draft; create; }
+  association _LoyaltyPgmTransactions { with draft; create; }
+  mapping for zexes1_lytpgmhdr corresponding
+    {
+      LoyaltyMembershipID       = lytmemid;
+      BusinessPartnerID         = bpid;
+      BusinessPartnerName       = bpname;
+      loyaltypgmmembersince     = memsince;
+      loyaltypgmPointsAvailable = lytpoints_avl;
+      loyaltypgmPointsRedeemed  = lytpoints_red;
+    }
+  draft action Edit;                //required for strict with draft
+  draft action Activate;     //required for strict with draft
+  draft action Discard;                                     //required for strict with draft
+  draft action Resume;                                      //required for strict with draft
+  draft determine action Prepare; //required for strict with draft
+}
+
+define behavior for ZEXES1_R_LYTPGMTRDET alias LoyaltyPgmTierDets
+persistent table zexes1_lytpgmtr
+draft table zexes1_lypgmtr_d
+lock dependent by _LoyaltyPgmMembershipHeader
+authorization dependent
+etag master LocalLastChangedAt
+{
+
+  // Mandatory fields for loyalty program tier maintenance
+  field ( mandatory ) LoyaltyPgmTierValidFrom;
+
+  // Fields that are mandatory for create but should be read-only afterwards
+  field ( readonly ) LoyaltyPgmMembershipID;
+
+  mapping for zexes1_lytpgmtr
+    {
+      LoyaltyPgmMembershipID   = lyTmemid;
+      LoyaltyPgmTierID         = lyTtierid;
+      LoyaltyPgmTierValidFrom  = lyTtiervalidfrom;
+      LocalLastChangedAt       = local_last_changed_at;
+      LoyaltyPgmTierStatus     = lyTtierstatus;
+      LoyaltyPgmTierStatusText = lyttierstatustext;
+      LoyaltyBPPgmTierCreatBy  = lyTbptiercreatby;
+      LoyaltyBPPgmTierChngBy   = lyTbptierchngby;
+      TierWfApprovalDueBy      = tierwfapprovaldueby;
+    }
+
+  update;
+  delete;
+
+  association _LoyaltyPgmMembershipHeader { with draft; }
+}
+
+define behavior for ZEXES1_R_LYTPGMTXNS alias LoyaltyProgramTransactions
+persistent table zexes1_lytpgmtxn
+draft table zexes1_pgmtxn_d
+lock dependent by _LoyaltyPgmMembershipHeader
+authorization dependent
+etag master LocalLastChangedAt
+early numbering
+{
+  // Administrative fields: read only
+  field ( readonly ) LoyaltyPgmTransChngBy, LoyaltyPgmTransCreatBy;
+
+  // Mandatory fields for loyalty program transactions
+  field ( mandatory ) LoyaltyPgmTransactionDate, LoyaltyPgmTransactionValue, LoyaltyPgmTransactionCurrency, LoyaltyPgmActivityType;
+
+  // Fields that are mandatory for create but should be read-only afterwards
+  field ( readonly ) LoyaltyPgmMembershipID, LoyaltyPgmTransactionID;
+  field ( readonly ) LoyaltyPgmPoints;
+
+  mapping for zexes1_lytpgmtxn
+    {
+      LoyaltyPgmMembershipID        = lytmemid;
+      LoyaltyPgmTransactionID       = lyttxnid;
+      LoyaltyPgmTransactionDate     = lyttxndt;
+      LoyaltyPgmActivityType        = lytacttyp;
+      LoyaltyPgmTransDescription    = lyttxndesc;
+      LoyaltyPgmTransactionCurrency = lyttxncur;
+      LoyaltyPgmPoints              = lytpoints;
+      LoyaltyPgmTransactionValue    = lyttxnval;
+      LoyaltyPgmTransCreatBy        = lyttxncreatby;
+      LoyaltyPgmTransCreatOn        = lyttxncreaton;
+      LoyaltyPgmTransChngBy         = lyttxnchngby;
+      LocalLastChangedAt            = local_last_changed_at;
+    }
+
+  update;
+  delete;
+
+  association _LoyaltyPgmMembershipHeader { with draft; }
+}

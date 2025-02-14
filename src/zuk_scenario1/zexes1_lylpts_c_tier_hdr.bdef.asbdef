@@ -1,0 +1,27 @@
+projection;
+use draft;
+define behavior for zexes1_LYLPTS_C_TIER_HDR alias TierConfigurationHeader
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _TierConfigurationDetails { create; }
+  use association _TierConfigurationText { create; }
+}
+
+define behavior for zexes1_LYLPTS_C_TIER_DETAILS alias TierDetails
+{
+  use update;
+  use delete;
+
+  use association _TierConfiguration;
+}
+
+define behavior for zexes1_LYLPTS_C_TIER_TEXT alias TierConfigurationText
+{
+  use update;
+  use delete;
+
+  use association _TierConfiguration;
+}

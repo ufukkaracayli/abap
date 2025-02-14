@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for ZC_UK_T_001'
+@AbapCatalog.extensibility.extensible: true
+define service ZUI_UK_T_001_O4 {
+  expose ZC_UK_T_001;
+}

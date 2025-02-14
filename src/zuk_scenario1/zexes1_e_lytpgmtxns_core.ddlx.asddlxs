@@ -1,0 +1,92 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Loyalty Program Transaction',
+                typeNamePlural: 'Loyalty Program Transactions',
+                title: { type: #STANDARD, label: 'Loyalty Program Transactions', value: 'LoyaltyPgmMembershipID' } },
+  presentationVariant: [{ sortOrder: [{ by: 'LoyaltyPgmMembershipID', direction:  #ASC }] }] }
+annotate entity ZEXES1_C_LYTPGMTXNS with
+{
+  @UI.facet: [
+  {
+   id: 'Transactions',
+   purpose: #STANDARD,
+   label: 'Transactions',
+   type: #FIELDGROUP_REFERENCE
+  }]
+  @UI.hidden: true
+  LoyaltyPgmMembershipID;
+
+  @UI: {
+         identification   : [ { position: 20, label: 'Transaction ID'  } ],
+         lineItem         : [ { qualifier: 'LITransactions', position: 20, label: 'Transaction ID'  } ]
+         ,
+         fieldGroup       : [ { position: 20, label: 'Transaction ID'      }]
+       }
+  LoyaltyPgmTransactionID;
+
+  @UI: {
+         identification   : [ { position: 30, label: 'Date'  } ],
+         lineItem         : [ { qualifier: 'LITransactions', position: 30, label: 'Date'  } ]
+         ,
+         fieldGroup       : [ { position: 30, label: 'Date' }]
+       }
+  @EndUserText.label: 'Transaction Date'
+  LoyaltyPgmTransactionDate;
+
+  @UI: {
+         identification   : [ { position: 40, label: 'Value'  } ],
+         lineItem         : [ { qualifier: 'LITransactions', position: 40, label: 'Value'  } ]
+         ,
+         fieldGroup       : [ { position: 40, label: 'Value' }]
+       }
+  LoyaltyPgmTransactionValue;
+
+  @UI: {
+         identification   : [ { position: 50, label: 'Currency'  } ],
+         lineItem         : [ { qualifier: 'LITransactions', position: 50, label: 'Currency'  } ]
+         ,
+         fieldGroup       : [ { position: 50, label: 'Currency' }]
+       }
+  @Consumption.valueHelpDefinition: [{
+         entity: { name: 'I_CURRENCY', element: 'Currency' },
+         label: 'Currency'
+  }]
+  LoyaltyPgmTransactionCurrency;
+
+  @UI: {
+         identification   : [ { position: 60, label: 'Description'  } ],
+         lineItem         : [ { qualifier: 'LITransactions', position: 60, label: 'Description'  } ]
+         ,
+         fieldGroup       : [ { position: 60, label: 'Description'}]
+       }
+  LoyaltyPgmTransDescription;
+
+  @UI: {
+         identification   : [ { position: 70, label: 'Activity Type'  } ],
+         lineItem         : [ { qualifier: 'LITransactions', position: 70, label: 'Activity Type'  } ]
+         ,
+         fieldGroup       : [ { position: 70, label: 'Activity Type' }]
+       }
+  @Consumption.valueHelpDefinition: [{
+        entity: { name: 'ZEXES1_LYLPTS_ACTTYPE_DOM_VAL', element: 'value_low' },
+       label: 'Activity Type'
+                                    }]
+  LoyaltyPgmActivityType;
+
+  @UI: {
+         identification   : [ { position: 80, label: 'Loyalty Points'  } ],
+         lineItem         : [ { qualifier: 'LITransactions', position: 80, label: 'Loyalty Points'  } ]
+         ,
+         fieldGroup       : [ { position: 80, label: 'Loyalty Points'}]
+       }
+  LoyaltyPgmPoints;
+
+  @UI.hidden: true
+  LoyaltyPgmTransCreatOn;
+
+  @UI.hidden: true
+  LoyaltyPgmTransCreatBy;
+
+  @UI.hidden: true
+  LoyaltyPgmTransChngBy;
+}

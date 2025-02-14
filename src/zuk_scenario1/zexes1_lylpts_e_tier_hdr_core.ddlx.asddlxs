@@ -1,0 +1,76 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: {
+  headerInfo: { typeName: 'Customer Category Configuration',
+                typeNamePlural: 'Customer Category Configurations',
+                title: { type: #STANDARD, label: 'Customer Category Configuration', value: 'LoyaltyTierID' } },
+  presentationVariant: [{ sortOrder: [{ by: 'LoyaltyTierID', direction:  #ASC }] }] }
+annotate entity zexes1_LYLPTS_C_TIER_HDR with
+{
+  @UI.facet: [
+   {
+     id: 'TierConfiguration',
+     purpose: #STANDARD,
+     label: 'Customer Category Configuration',
+     type: #IDENTIFICATION_REFERENCE,
+     position: 10
+   },
+   {
+      id: 'Description',
+      label: 'Description',
+      type: #LINEITEM_REFERENCE,
+      position: 20,
+      targetElement: '_TierConfigurationText'
+   },
+   {
+      id: 'Details',
+      label: 'Details',
+      type: #LINEITEM_REFERENCE,
+      position: 30,
+      targetElement: '_TierConfigurationDetails'
+   }]
+
+  @UI: {  identification: [ { position: 10, label: 'ID' } ],
+          lineItem:       [ { position: 10, label: 'ID' } ] }
+  @Search.defaultSearchElement: true
+  LoyaltyTierID;
+
+  @UI: {  identification: [ { position: 20, label: 'Country' } ],
+          lineItem:       [ { position: 20, label: 'Country' } ] }
+  @Consumption.valueHelpDefinition: [ { entity : { name    : 'I_Country',
+                                                   element : 'Country' } } ]
+
+  LoyaltyTierCountry;
+
+  @UI: {  identification: [ { position: 30, label: 'Currency' } ],
+          lineItem:       [ { position: 30, label: 'Currency' } ] }
+  @Consumption.valueHelpDefinition: [ { entity : { name    : 'I_Currency',
+                                                   element : 'Currency' } } ]
+  LoyaltyTierDefaultCurrency;
+
+  @UI: {  identification: [ { position: 40, label: 'Active' } ],
+          lineItem:       [ { position: 40, label: 'Active' } ] }
+  LoyaltyTierIsEnabled;
+
+  @UI: {  identification: [ { position: 50, label: 'Approver E-mail' } ],
+          lineItem:       [ { position: 50, label: 'Approver E-mail' } ] }
+  LoyaltyTierApprover;
+  @UI: {  identification: [ { position: 60, label: 'Tier change due days' } ],
+         lineItem:        [ { position: 60, label: 'Tier change due days' } ] }
+  LoyaltyTierChangeDueDays;
+
+  /* Admininstrative fields */
+  @UI.hidden: true
+  LoyaltyTierCreatOn;
+
+  @UI.hidden: true
+  LoyaltyTierCreatBy;
+
+  @UI.hidden: true
+  LoyaltyTierChngOn;
+
+  @UI.hidden: true
+  LoyaltyTierChngBy;
+
+
+}

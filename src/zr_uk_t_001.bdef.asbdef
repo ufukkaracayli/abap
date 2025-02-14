@@ -1,0 +1,42 @@
+managed implementation in class ZBP_R_UK_T_001 unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_UK_T_001
+persistent table zuk_t_001
+draft table ZUK_T_001_D
+etag master LocalLastChanged
+lock master total etag LastChanged
+authorization master( global )
+
+{
+  field ( readonly )
+   ID,
+   LastChanged,
+   LocalLastChanged;
+
+  field ( numbering : managed )
+   ID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZUK_T_001
+  {
+    ID = id;
+    Firstname = firstname;
+    Lastname = lastname;
+    Age = age;
+    Role = role;
+    Salary = salary;
+    LastChanged = last_changed;
+    LocalLastChanged = local_last_changed;
+  }
+}
